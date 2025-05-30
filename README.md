@@ -1,19 +1,21 @@
-# trabengsoft2
+# Trabalho Eng. Software 2
+Consiste em um jogo estilo RPG de terminal, no qual o jogador deve enfrentar inimigos até que seja derrotado.
+Contém 2 tipos de inimigos: Orc e Ghost. Cada um tem seus atributos, magia e grito de guerra.
 
-### Qual(is) padrão(ões) foram utilizados
+### Quais padrões foram utilizados
 - **Factory Method**: Criação de jogadores, inimigos, itens, etc.
 - **Singleton**: Classe principal `Game` com instância única.
-- **(implicito) Strategy**: Ataques com variações (normal, crítico, mágico).
 - **Layered Architecture**: Separação clara entre `domain`, `service`, `abstract`, etc.
 
 ### Por que foi escolhido cada padrão
-Porque esse conjuntos de padrão define uma boa organização para um jogo, permitindo escalabilidade e simplicidade.
+Porque esse conjuntos de padrões define uma boa organização para um jogo, permitindo escalabilidade e simplicidade. Adicionar novos inimigos é muito simples, basta criar uma nova classe de domínio herdando a classe Entity, implementar os métodos abstratos, criar um método na EntityFactory e adicioná-lo ao universo de métodos que podem ser chamados na função `create_random_enemy()`.
+
 ### Como foi implementado no projeto:
 
 ---
 
 #### Factory Method  
-Uma fábrica (`EntityFactory`) cria jogadores, inimigos e itens conforme parâmetros.
+Uma fábrica (`EntityFactory`) cria entidades, como o  jogador e inimigos (Orc ou Ghost), conforme parâmetros.
 
 ---
 
@@ -31,7 +33,7 @@ Ataques normais, mágicos e críticos têm comportamentos diferentes implementad
 O código está organizado em camadas:  
 - `domain` para entidades  
 - `service` para regras e lógica  
-- `abstract` para interfaces base
+- `abstract` para classes abstratas (Entity)
 
 
 run game (Python 3.11+):
