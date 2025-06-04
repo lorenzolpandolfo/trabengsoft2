@@ -1,16 +1,16 @@
-<<<<<<< HEAD
 # trabengsoft2
 
 run tests:
 `PYTHONPATH=./src/game/ python -m unittest src/test/test_battle_service.py`
-=======
+
 # Trabalho Eng. Software 2
 Consiste em um jogo estilo RPG de terminal, no qual o jogador deve enfrentar inimigos até que seja derrotado.
 Contém 2 tipos de inimigos: Orc e Ghost. Cada um tem seus atributos, magia e grito de guerra.
 
 ### Quais padrões foram utilizados
 - **Factory Method**: Criação de jogadores, inimigos, itens, etc.
-- **Singleton**: Classe principal `Game` com instância única.
+- **Strategy**: Para ataques e magias personalizadas.
+- **Facade**: Para abstração da lógica ao iniciar o jogo.
 - **Layered Architecture**: Separação clara entre `domain`, `service`, `abstract`, etc.
 
 ### Por que foi escolhido cada padrão
@@ -25,26 +25,27 @@ Uma fábrica (`EntityFactory`) cria entidades, como o  jogador e inimigos (Orc o
 
 ---
 
-#### Singleton  
-A classe `Game` garante que exista apenas uma instância usada em todo o jogo.
+#### Facade
+Consiste em uma classe que abstrai a lógica para iniciar o jogo. É utilizada em main.py com o método `start_game()`.
 
 ---
 
-#### Strategy (implícito)  
+#### Strategy
 Ataques normais, mágicos e críticos têm comportamentos diferentes implementados em métodos separados.
 
 ---
 
 #### Layered Architecture  
-O código está organizado em camadas:  
-- `domain` para entidades  
-- `service` para regras e lógica  
-- `abstract` para classes abstratas (Entity)
-
+O código está organizado em camadas, cada uma com sua responsabilidade:  
+- `domain` entidades  
+- `service` regras de negócio e lógica complexa  
+- `abstract` classes abstratas (Entity)
+- `strategy` classes de strategy (AttackStrategy)
+- `facade` classe GameFacade
+- `utils` utilitários
 
 run game (Python 3.11+):
 `python src/game/main.py`
 
 run tests:
 `PYTHONPATH=./src/game/ python -m unittest src/test/test_battle_service.py`
->>>>>>> cfaf80d23924390ec66987fd4df10b1c4627a931
