@@ -1,13 +1,22 @@
 from abc import ABC, abstractmethod
+from strategy.attack_strategy import AttackStrategy
 
 
 class Entity(ABC):
 
-    def __init__(self, hp: int, dmg: int, name: str, crit_chance: int) -> None:
+    def __init__(
+        self,
+        hp: int,
+        dmg: int,
+        name: str,
+        crit_chance: int,
+        attack_strategy: AttackStrategy,
+    ) -> None:
         self.hp = hp
         self.dmg = dmg
         self.name = name
         self.crit_chance = crit_chance
+        self.attack_strategy = attack_strategy
 
     def is_alive(self) -> bool:
         return self.hp > 0

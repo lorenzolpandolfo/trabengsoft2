@@ -1,15 +1,21 @@
 from abstract.entity import Entity
+from strategy.attack_strategy import AttackStrategy
 
 
 class Player(Entity):
     DEFAULT_HP = 30
     DEFAULT_DAMAGE = 10
     DEFAULT_CRIT_CHANCE = 4
-
-    def __init__(self, name: str) -> None:
-        super().__init__(Player.DEFAULT_HP, Player.DEFAULT_DAMAGE, name, Player.DEFAULT_CRIT_CHANCE)
-
     WAR_CRY = "Atacaaaarr!!!"
+
+    def __init__(self, name: str, attackStrategy: AttackStrategy) -> None:
+        super().__init__(
+            Player.DEFAULT_HP,
+            Player.DEFAULT_DAMAGE,
+            name,
+            Player.DEFAULT_CRIT_CHANCE,
+            attackStrategy,
+        )
 
     def war_cry(self) -> str:
         return self.WAR_CRY

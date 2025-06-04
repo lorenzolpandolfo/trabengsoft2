@@ -1,3 +1,9 @@
+<<<<<<< HEAD
+# trabengsoft2
+
+run tests:
+`PYTHONPATH=./src/game/ python -m unittest src/test/test_battle_service.py`
+=======
 # Trabalho Eng. Software 2
 Consiste em um jogo estilo RPG de terminal, no qual o jogador deve enfrentar inimigos até que seja derrotado.
 Contém 2 tipos de inimigos: Orc e Ghost. Cada um tem seus atributos, magia e grito de guerra.
@@ -41,3 +47,4 @@ run game (Python 3.11+):
 
 run tests:
 `PYTHONPATH=./src/game/ python -m unittest src/test/test_battle_service.py`
+>>>>>>> cfaf80d23924390ec66987fd4df10b1c4627a931
