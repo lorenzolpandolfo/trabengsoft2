@@ -64,7 +64,7 @@ class BattleService:
         dmg = attacker.attack_strategy.calculate_damage(attacker, critical)
 
         msg = (
-            f"   [!!!] {attacker} ACERTA A CABEÇA DE {reciever} E CAUSA {dmg} DE DANO! (CRÍTICO)\n"
+            f"   [💥] {attacker} ACERTA A CABEÇA DE {reciever} E CAUSA {dmg} DE DANO! (CRÍTICO)\n"
             if critical
             else f"   [!] {attacker} ataca {reciever} e causa {dmg} de dano!\n"
         )
@@ -78,7 +78,7 @@ class BattleService:
     def recieve_damage(self, reciever: Entity, dmg: int) -> None:
         if reciever.hp - dmg <= 0:
             reciever.hp = 0
-            print(f"[x] {reciever} está morto!\n")
+            print(f"[💀] {reciever} está morto!\n")
             return
 
         reciever.hp = reciever.hp - dmg
@@ -118,5 +118,5 @@ class BattleService:
 
     def war_cry(self, attacker: Entity):
         if randint(0, 3) == 0:
-            print(f"  [!] {attacker} grita: {attacker.war_cry()}\n")
+            print(f"  [!] {attacker} grita: {attacker.war_cry()} 🤬\n")
             sleep(COOLDOWN_TIME)

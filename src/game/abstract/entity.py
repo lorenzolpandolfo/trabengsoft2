@@ -38,7 +38,7 @@ class Entity(ABC):
         pass
 
     def _format_magic_msg(self, msg) -> str:
-        return f"   [*~.] {self} usou seu poder mágico! {msg}.\n"
+        return f"   [🪄*~.] {self} usou seu poder mágico! {msg}.\n"
 
     def set_current_state(self, state: AbstractState):
         if not self.current_state:

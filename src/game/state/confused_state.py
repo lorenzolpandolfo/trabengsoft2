@@ -19,7 +19,7 @@ class ConfusedState(AbstractState):
 
         reciever.crit_chance = self.points
         print(
-            f"   [{self}] O efeito faz {reciever} errar críticos por {self.initial_duration} rodadas. {self.get_formatted_current_duration()}\n"
+            f"   [🫨 {self} 💫] O efeito faz {reciever} errar críticos por {self.initial_duration} rodadas. {self.get_formatted_current_duration()}\n"
         )
     
     def _get_duration(self) -> int:

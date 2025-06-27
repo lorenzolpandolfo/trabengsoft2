@@ -17,7 +17,7 @@ class BurnState(AbstractState):
 
         reciever.hp -= self.points
         print(
-            f"   [{self}] O efeito queima e causa {self.points} pontos de dano. {self.get_formatted_current_duration()}\n"
+            f"   [🔥 {self} 🔥] O efeito queima e causa {self.points} pontos de dano. {self.get_formatted_current_duration()}\n"
         )
     
     def _get_duration(self) -> int:

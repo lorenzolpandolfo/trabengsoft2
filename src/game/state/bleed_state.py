@@ -21,7 +21,7 @@ class BleedState(AbstractState):
 
         reciever.hp -= bleed_dmg
         print(
-            f"   [{self}] O efeito causa {bleed_dmg} de dano. {self.get_formatted_current_duration()}\n"
+            f"   [🩸 {self} 🩸] O efeito causa {bleed_dmg} de dano. {self.get_formatted_current_duration()}\n"
         )
 
     def _get_duration(self) -> int:

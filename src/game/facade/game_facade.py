@@ -32,10 +32,10 @@ class GameFacade:
 
     def _set_player_weapon(self) -> AbstractState | None:
         print("Escolha uma arma para lutar:")
-        print("(1) - Espada Samurai (Bleed - Sangramento)")
-        print("(2) - Chicote Flamejante (Burn - Queimação)")
-        print("(3) - Adagas Eletrizantes (Confusion - Confusão)")
-        print("(4) - Martelo Esmagador (Weakness - Fraqueza)")
+        print("(1) - 🩸 Espada Samurai (Bleed - Sangramento)")
+        print("(2) - 🔥 Chicote Flamejante (Burn - Queimação)")
+        print("(3) - 💫 Adagas Eletrizantes (Confusion - Confusão)")
+        print("(4) - 🤕 Martelo Esmagador (Weakness - Fraqueza)")
         print("\n(Cada arma tem chance de aplicar o efeito específicado)")
         choice = int(input("\n> Selecione uma arma: ")) - 1
         print("\n")
