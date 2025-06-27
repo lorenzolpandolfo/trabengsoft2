@@ -1,5 +1,6 @@
 from abc import ABC, abstractmethod
 from strategy.attack_strategy import AttackStrategy
+from state.abstract_state import AbstractState
 
 
 class Entity(ABC):
@@ -11,12 +12,15 @@ class Entity(ABC):
         name: str,
         crit_chance: int,
         attack_strategy: AttackStrategy,
+        special_attack: AbstractState | None,
     ) -> None:
         self.hp = hp
         self.dmg = dmg
         self.name = name
         self.crit_chance = crit_chance
         self.attack_strategy = attack_strategy
+        self.current_state: AbstractState | None = None
+        self.special_attack_state: AbstractState | None = special_attack
 
     def is_alive(self) -> bool:
         return self.hp > 0
@@ -31,6 +35,10 @@ class Entity(ABC):
 
     def _format_magic_msg(self, msg) -> str:
         return f"[*~.] {self} usou seu poder mágico! {msg}.\n"
+
+    def set_current_state(self, state: AbstractState):
+        if not self.current_state:
+            self.current_state = state
 
     def __str__(self) -> str:
         return self.name

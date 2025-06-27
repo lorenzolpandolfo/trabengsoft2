@@ -1,5 +1,6 @@
 from abstract.entity import Entity
 from strategy.attack_strategy import AttackStrategy
+from state.burn_state import BurnState
 
 
 class Player(Entity):
@@ -7,6 +8,7 @@ class Player(Entity):
     DEFAULT_DAMAGE = 10
     DEFAULT_CRIT_CHANCE = 4
     WAR_CRY = "Atacaaaarr!!!"
+    SPECIAL_ATTACK = BurnState()
 
     def __init__(self, name: str, attackStrategy: AttackStrategy) -> None:
         super().__init__(
@@ -15,6 +17,7 @@ class Player(Entity):
             name,
             Player.DEFAULT_CRIT_CHANCE,
             attackStrategy,
+            Player.SPECIAL_ATTACK,
         )
 
     def war_cry(self) -> str:

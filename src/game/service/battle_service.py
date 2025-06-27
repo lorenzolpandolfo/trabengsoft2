@@ -1,8 +1,10 @@
 from time import sleep
 from random import randint, random
 
-from factory.entity_factory import EntityFactory
+
 from abstract.entity import Entity
+from enums.states import EnumStates
+from factory.entity_factory import EntityFactory
 
 
 COOLDOWN_TIME = 2
@@ -22,9 +24,11 @@ class BattleService:
             self.battle(self.player, self.enemy)
 
             if not self.enemy.is_alive():
-                print(f"{self.player} venceu o {self.enemy}! Lá vem mais um...\n\n")
+                print(f"{self.player} venceu o {self.enemy}!\n\n")
                 self.enemy = self.entity_factory.create_random_enemy()
-                sleep(3)
+                print(f"Cuidado! {self.enemy} se aproxima...\n")
+                print("Aperte ENTER para iniciar a próxima batalha")
+                input()
 
         print("[end] O jogador morreu...\n")
 
@@ -51,8 +55,45 @@ class BattleService:
         )
 
         print(msg)
+        self.special_state_handler(attacker, reciever)
+
         sleep(COOLDOWN_TIME)
         self.recieve_damage(reciever, dmg)
+
+    def recieve_damage(self, reciever: Entity, dmg: int) -> None:
+        if reciever.hp - dmg <= 0:
+            reciever.hp = 0
+            print(f"[x] {reciever} está morto!\n")
+            return
+
+        reciever.hp = reciever.hp - dmg
+        print(f"(-) {reciever} está com {reciever.hp} pontos de vida.\n\n")
+        sleep(COOLDOWN_TIME)
+
+    def special_state_handler(self, attacker: Entity, reciever: Entity):
+        self.set_special_state(attacker, reciever)
+        self.hit_state(reciever)
+
+    def set_special_state(self, attacker: Entity, reciever: Entity):
+        if randint(0, 5) == 0:
+            attacker_state = attacker.special_attack_state
+
+            if not attacker_state or reciever.current_state:
+                return
+
+            attacker_state.set(reciever)
+
+            print(
+                f"[!] O ataque de {attacker} tem efeito de {str(attacker_state)} nas próximas {attacker_state.duration} rodadas...\n"
+            )
+
+            reciever.set_current_state(attacker_state)
+
+    def hit_state(self, reciever: Entity):
+        if not reciever.current_state:
+            return
+
+        reciever.current_state.hit(reciever)
 
     def magic(self, attacker: Entity):
         if randint(0, 6) == 0:
@@ -64,13 +105,3 @@ class BattleService:
         if randint(0, 3) == 0:
             print(f"[!] {attacker} grita: {attacker.war_cry()}\n")
             sleep(COOLDOWN_TIME)
-
-    def recieve_damage(self, reciever: Entity, dmg: int) -> None:
-        if reciever.hp - dmg <= 0:
-            reciever.hp = 0
-            print(f"[x] {reciever} está morto!\n")
-            return
-
-        reciever.hp = reciever.hp - dmg
-        print(f"(-) {reciever} está com {reciever.hp} pontos de vida.\n\n")
-        sleep(COOLDOWN_TIME)

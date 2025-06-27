@@ -19,16 +19,6 @@ PREFIXES = [
     "Chefe",
 ]
 
-SUFFIXES = [
-    "Guerreiro",
-    "Gatuno",
-    "Forte",
-    "Monstruoso",
-    "Maligno",
-    "Demoníaco",
-    "Vampírico",
-]
-
 
 class EntityFactory:
     def __init__(self, legendary_chance: float = 0.2):
@@ -53,8 +43,7 @@ class EntityFactory:
 
     def _create_enemy_name(self, base_name: str, strategy: AttackStrategy) -> str:
         prefix = choice(PREFIXES).capitalize()
-        suffix = choice(SUFFIXES).capitalize()
-        full_name = f"{prefix} {base_name} {suffix}"
+        full_name = f"{prefix} {base_name}"
 
         if isinstance(strategy, LegendaryAttackStrategy):
             full_name += " (Lendário)"

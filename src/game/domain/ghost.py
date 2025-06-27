@@ -1,5 +1,6 @@
-from strategy.attack_strategy import AttackStrategy
 from abstract.entity import Entity
+from strategy.attack_strategy import AttackStrategy
+from state.burn_state import BurnState
 
 
 class Ghost(Entity):
@@ -8,6 +9,7 @@ class Ghost(Entity):
     DEFAULT_DAMAGE = 10
     DEFAULT_CRIT_CHANCE = 3
     WAR_CRY = "Sua alma será minha!"
+    SPECIAL_ATTACK = BurnState()
 
     def __init__(self, name: str, attackStrategy: AttackStrategy) -> None:
         super().__init__(
@@ -16,6 +18,7 @@ class Ghost(Entity):
             name,
             Ghost.DEFAULT_CRIT_CHANCE,
             attackStrategy,
+            Ghost.SPECIAL_ATTACK,
         )
 
     def war_cry(self) -> str:
