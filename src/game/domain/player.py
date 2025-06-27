@@ -1,6 +1,6 @@
 from abstract.entity import Entity
 from strategy.attack_strategy import AttackStrategy
-from state.burn_state import BurnState
+from state.bleed_state import BleedState
 
 
 class Player(Entity):
@@ -8,7 +8,7 @@ class Player(Entity):
     DEFAULT_DAMAGE = 10
     DEFAULT_CRIT_CHANCE = 4
     WAR_CRY = "Atacaaaarr!!!"
-    SPECIAL_ATTACK = BurnState()
+    SPECIAL_ATTACK = BleedState()
 
     def __init__(self, name: str, attackStrategy: AttackStrategy) -> None:
         super().__init__(
@@ -25,4 +25,6 @@ class Player(Entity):
 
     def use_magic(self) -> str:
         self.hp = self.hp + 15
-        return f"[*~.] {self} usou seu poder mágico e restaurou 15 pontos de vida!\n- Atual: {self.hp} pontos"
+        return super()._format_magic_msg(
+            f"Ganhou 15 pontos de vida! - Atual: {self.hp}"
+        )

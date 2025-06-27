@@ -18,6 +18,10 @@ class Entity(ABC):
         self.dmg = dmg
         self.name = name
         self.crit_chance = crit_chance
+
+        self.default_dmg = dmg
+        self.default_crit_chance = crit_chance
+
         self.attack_strategy = attack_strategy
         self.current_state: AbstractState | None = None
         self.special_attack_state: AbstractState | None = special_attack
@@ -34,11 +38,14 @@ class Entity(ABC):
         pass
 
     def _format_magic_msg(self, msg) -> str:
-        return f"[*~.] {self} usou seu poder mágico! {msg}.\n"
+        return f"   [*~.] {self} usou seu poder mágico! {msg}.\n"
 
     def set_current_state(self, state: AbstractState):
         if not self.current_state:
             self.current_state = state
+
+    def reset_debuffs(self):
+        self.crit_chance = self.default_crit_chance
 
     def __str__(self) -> str:
         return self.name

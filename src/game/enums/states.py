@@ -3,7 +3,7 @@ from enum import Enum
 
 class EnumStates(Enum):
     BURN = 0
-    BLEED = 1
+    BLEEDING = 1
     WEAKNESS = 2
     CONFUSED = 3
 

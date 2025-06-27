@@ -28,12 +28,15 @@ class AbstractState(ABC):
     def hit(self, reciever):
         pass
 
-    def _base_hit(self, reciever):
+    def _base_hit(self, reciever) -> bool:
+
         if reciever.current_state.duration <= 0:
             reciever.current_state = None
-            return
+            reciever.reset_debuffs()
+            return False
 
         reciever.current_state.duration -= 1
+        return True
 
     def get_formatted_current_duration(self):
         return f"({self.duration}/{self.initial_duration})"

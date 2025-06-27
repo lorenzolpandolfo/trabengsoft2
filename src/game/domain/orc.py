@@ -25,8 +25,9 @@ class Orc(Entity):
         return self.WAR_CRY
 
     def use_magic(self) -> str:
-        self.dmg = self.dmg + 3
+        self.default_dmg = self.dmg = self.dmg + 3
         self.hp = self.hp + 3
+        
         return super()._format_magic_msg(
             f"Ataque e vida aumentam em 3 pontos.\n- Atual dano: {self.dmg}, vida: {self.hp}"
         )
