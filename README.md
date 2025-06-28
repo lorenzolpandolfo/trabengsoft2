@@ -6,7 +6,7 @@ Contém 2 tipos de inimigos: *Orc* e *Ghost*. Cada um tem seus atributos, magia,
 ### Quais padrões foram utilizados
 
 - **Factory Method**: Criação de jogadores, inimigos, itens, etc.
-- **Strategy**: Para ataques e magias personalizadas.
+- **Strategy**: Para ataques comuns e lendários.
 - **Facade**: Para abstração da lógica ao iniciar o jogo.
 - **State**: Para implementar estados de ataques especiais em entidades (Bleed, Burn, Confusion e Weakness)
 - **Decorator**: Para aplicar, em instâncias das entidades, os ataques especiais padrão
